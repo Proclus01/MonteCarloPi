@@ -6,11 +6,13 @@ import Plot from 'react-plotly.js';
 // %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 // Accepts one parameter as input: the LIMIT for the number of iterations
-// Logs the value of pi within a while loop
-// The convergence is very slow, reaching a 4 digit approximation after 10M iterations
-// convergence might be optimized if we didn't use Math.random
+// Returns the value of pi from the limit
+// Convergence is SLOW, and should be optimized carefully
+// The MC estimate currently has a fourfold mirror symmetry to randomness
+// which causes spikey over- and under-approximations.
+// Future optimization should be done by summing 4 different approximations
 function monteCarloPi(limit) {
-    // Calculate area in a circle.
+    // Estimate area in a circle.
 
     // Initialize circle radius to 1
     let radius = 1;
@@ -40,6 +42,7 @@ function monteCarloPi(limit) {
     // and this area is approximated by (points_inside / points_total)
     // multiplying by 4 gives us the full value for pi
     return ( (4 * points_inside) / points_total );
+
 }
 
 // UI Component Returned from Histogram
